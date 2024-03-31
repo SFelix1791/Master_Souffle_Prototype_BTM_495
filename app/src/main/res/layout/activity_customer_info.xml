@@ -1,0 +1,50 @@
+<!-- activity_customer_info.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtViewFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/txtViewLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/txtViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/txtViewCustomerId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Customer ID"
+        android:textSize="18sp"/>
+
+
+    <Button
+        android:id="@+id/btnShowQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Show QR Code" />
+
+    <Button
+        android:id="@+id/btnMoveEditProfile"
+        android:layout_width="222dp"
+        android:layout_height="wrap_content"
+        android:text="Edit Information" />
+
+</LinearLayout>
