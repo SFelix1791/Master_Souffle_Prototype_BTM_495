@@ -14,7 +14,9 @@ public class Menu extends AppCompatActivity {
 
     private TextView tvQuantity;
     private Button btnIncreaseQuantity, btnDecreaseQuantity, btnViewCart, btnCustomerAccount;
-    private int quantity = 1; // Starting with 1 item
+
+    // Quantity of items selected
+    private int quantity = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +28,15 @@ public class Menu extends AppCompatActivity {
             return insets;
         });
 
-        // Find UI elements by ID
+        // Initialize UI elements
         tvQuantity = findViewById(R.id.tvQuantity);
         btnIncreaseQuantity = findViewById(R.id.btnIncreaseQuantity);
         btnDecreaseQuantity = findViewById(R.id.btnDecreaseQuantity);
         btnViewCart = findViewById(R.id.btnViewCart);
         btnCustomerAccount = findViewById(R.id.btnCustomerAccount);
 
-        // Set OnClickListener for Customer Account button
+        // Sets onclick for btnCustomerAccount
+        // Brings user to Customer Account page
         btnCustomerAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +46,7 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        // Listener to increase the quantity
+        // Increases quantity of item
         btnIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +55,7 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        // Listener to decrease the quantity
+        // Decreases quantity of item
         btnDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +66,8 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        // Listener for the "View Cart" button
+        // Sets onclick for btnViewCart
+        // Brings user to Cart page
         btnViewCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +79,7 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-    // Helper method to update the quantity display
+    // Updates the quantity display
     private void updateQuantityDisplay() {
         tvQuantity.setText(String.format("Quantity: %d", quantity));
     }

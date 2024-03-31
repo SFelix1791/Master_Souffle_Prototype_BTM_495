@@ -9,9 +9,11 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    // Database Name and Version (Currently at 4th Version)
     public static final String DATABASE_NAME = "UserDatabase";
     public static final int DATABASE_VERSION = 4;
 
+    // Table & Column Names
     public static final String TABLE_USERS = "users";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_CUSTOMER_ID = "customer_id";
@@ -20,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_PASSWORD = "password";
 
+    // SQL Query: Creates User Tables
     private static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_CUSTOMER_ID + " TEXT UNIQUE,"
@@ -29,28 +32,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_PASSWORD + " TEXT"
             + ")";
 
+    // Constructor
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // To create database
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_USERS);
         Log.d("DatabaseHelper", "Database and user table created.");
     }
 
+    // To upgrade / clear the database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("DatabaseHelper", "Upgrading database, which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         onCreate(db);
     }
-
+    // Retrieves user info using Email
     public Cursor getUserByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(TABLE_USERS, null, COLUMN_EMAIL + "=?", new String[]{email}, null, null, null);
     }
 
+    // Updates user info
     public int updateUserInfo(String email, String firstName, String lastName) {
         Log.d("DatabaseHelper", "Updating user info for email: " + email);
         SQLiteDatabase db = this.getWritableDatabase();

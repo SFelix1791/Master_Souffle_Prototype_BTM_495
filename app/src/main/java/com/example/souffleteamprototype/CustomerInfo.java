@@ -18,14 +18,16 @@ public class CustomerInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_info);
 
-        // Initialize TextViews
+        // Initialize UI Elements
         txtViewFirstName = findViewById(R.id.txtViewFirstName);
         txtViewLastName = findViewById(R.id.txtViewLastName);
         txtViewEmail = findViewById(R.id.txtViewEmail);
         txtViewCustomerId = findViewById(R.id.txtViewCustomerId);
-
-        // Initialize the buttons and set their click listeners
         btnShowQR = findViewById(R.id.btnShowQR);
+        btnMoveEditProfile = findViewById(R.id.btnMoveEditProfile);
+
+        // Sets onclick for btnShowQR
+        // Brings user to QR page
         btnShowQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +38,8 @@ public class CustomerInfo extends AppCompatActivity {
             }
         });
 
-        btnMoveEditProfile = findViewById(R.id.btnMoveEditProfile);
+        // Sets onclick for btnMoveEditProfile
+        // Brings user to Edit Profile page
         btnMoveEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,10 +51,11 @@ public class CustomerInfo extends AppCompatActivity {
             }
         });
 
-        // Load user info from SharedPreferences
+        // Loads user info from SharedPreferences
         loadUserInfoFromSharedPreferences();
     }
 
+    // Method displays user info
     private void loadUserInfoFromSharedPreferences() {
         SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
         String firstName = prefs.getString("firstName", "N/A");

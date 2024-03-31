@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SignUp extends AppCompatActivity {
 
     private EditText etFirstName, etLastName, etEmail, etPassword;
-    private TextView etCustomerId; // For Customer ID display
+    private TextView etCustomerId;
     private Button btnSignUp;
     private DatabaseHelper dbHelper;
 
@@ -28,11 +28,13 @@ public class SignUp extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
+        // Initializes UI Elements
+
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        etCustomerId = findViewById(R.id.etCustomerId); // Initialize Customer ID TextView
+        etCustomerId = findViewById(R.id.etCustomerId);
         btnSignUp = findViewById(R.id.btnSignUp);
 
         // Display a unique CustomerID
@@ -53,7 +55,7 @@ public class SignUp extends AppCompatActivity {
             return;
         }
 
-        // Save the user data along with CustomerID in the database
+        // Method saves the user data and CustomerID in the database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_CUSTOMER_ID, customerId);
@@ -67,7 +69,7 @@ public class SignUp extends AppCompatActivity {
         if (newRowId == -1) {
             Toast.makeText(this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
         } else {
-            // Store the CustomerID and other info in SharedPreferences
+            // Stores the CustomerID and other user info in SharedPreferences
             SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("firstName", firstName);
@@ -77,7 +79,7 @@ public class SignUp extends AppCompatActivity {
             editor.apply();
 
             Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
-            // Log for debugging
+            // Log for debugging plus I think it looks nice
             Log.d("SignUp", "Stored CustomerID in SharedPreferences: " + customerId);
 
             // Redirect to LoginActivity
@@ -95,9 +97,9 @@ public class SignUp extends AppCompatActivity {
         Cursor cursor = null;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        // Attempt to generate a unique customer ID
+        // Method attempts to generate a unique customer ID
         do {
-            // Close the previous cursor if it is not null and not closed
+
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
@@ -112,7 +114,7 @@ public class SignUp extends AppCompatActivity {
             cursor = db.query(DatabaseHelper.TABLE_USERS, columns, selection, selectionArgs, null, null, null);
         } while (cursor != null && cursor.moveToFirst()); // Continue if the ID is found
 
-        // Clean up
+
         if (cursor != null) {
             cursor.close();
         }

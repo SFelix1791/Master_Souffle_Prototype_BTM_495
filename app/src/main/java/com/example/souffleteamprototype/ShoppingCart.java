@@ -14,8 +14,7 @@ public class ShoppingCart extends AppCompatActivity {
     private TextView tvItemList, tvSubtotal, tvTax, tvTotal;
     private EditText etPromoCode;
     private Button btnApplyPromo;
-    private double price = 9.99; // Assuming a fixed price for the cheesecake
-    // The quantity will now be received from the intent
+    private double price = 9.99; // Price for Cheesecake according to Uber Eats
     private int quantity;
     private final double TAX_RATE = 0.15; // 15% tax
     private final double DISCOUNT_RATE = 0.20; // 20% discount for promo code CAKE20
@@ -25,7 +24,7 @@ public class ShoppingCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
 
-        // Initialize views
+        // Initialize UI Elements
         tvItemList = findViewById(R.id.tvItemList);
         tvSubtotal = findViewById(R.id.tvSubtotal);
         tvTax = findViewById(R.id.tvTax);
@@ -40,10 +39,11 @@ public class ShoppingCart extends AppCompatActivity {
         // Update the UI to show item details including the received quantity
         tvItemList.setText(String.format(Locale.getDefault(), "Item: Japanese Cheesecake Medium\nPrice: $%.2f each\nQuantity: %d", price, quantity));
 
-        // Initially calculate and show totals
+        // Initially calculate and shows totals
         updateTotals();
 
-        // Set the promo code application logic
+        // Sets onclick for btnApplyPromo
+        // Applies the promo code
         btnApplyPromo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +56,7 @@ public class ShoppingCart extends AppCompatActivity {
             }
         });
     }
-
+    // Method updates totals
     private void updateTotals() {
         double subtotal = calculateSubtotal(price, quantity);
         double tax = subtotal * TAX_RATE;
@@ -65,11 +65,12 @@ public class ShoppingCart extends AppCompatActivity {
         tvTax.setText(String.format(Locale.getDefault(), "Tax: $%.2f", tax));
         tvTotal.setText(String.format(Locale.getDefault(), "Total: $%.2f", total));
     }
-
+    // Method calculates subtotal
     private double calculateSubtotal(double price, int quantity) {
         return price * quantity;
     }
 
+    // Method applies discount code
     private void applyDiscount(double discountRate) {
         double subtotal = calculateSubtotal(price, quantity);
         double discount = subtotal * discountRate;

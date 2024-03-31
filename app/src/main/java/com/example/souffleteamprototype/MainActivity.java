@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+// This is our humble welcome page!
 public class MainActivity extends AppCompatActivity {
     private Button btnJump;
 
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Initializes the btnJump button
+        // Brings user to SignUp page
         btnJump = findViewById(R.id.btnJump);
         btnJump.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(signUpIntent);
             }
         });
-
+        // Initializes the btnLogIn button
+        // Brings user to LogIn page
         Button btnLogin = findViewById(R.id.btnLogIn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

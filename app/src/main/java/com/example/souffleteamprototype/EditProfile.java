@@ -22,11 +22,13 @@ public class EditProfile extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
+        // Initializes UI elements
         editEmail = findViewById(R.id.editEmail);
         editFirstName = findViewById(R.id.editFirstName);
         editLastName = findViewById(R.id.editLastName);
 
-        // Get the email from intent extras
+        // Retrieves the user Email
+        // Email is used to identify user in database
         String userEmail = getIntent().getStringExtra("email");
         if (userEmail != null && !userEmail.isEmpty()) {
             // Set the email to the editEmail field
@@ -34,6 +36,7 @@ public class EditProfile extends AppCompatActivity {
         }
 
         // Set editEmail to be non-editable
+        // This is also invisible in the XML
         editEmail.setEnabled(false);
 
         Button btnSaveChanges = findViewById(R.id.btnSaveChanges);
@@ -50,7 +53,7 @@ public class EditProfile extends AppCompatActivity {
         });
     }
 
-
+    // Method updates/changes user info in the database
     private void updateUserInformation(String email) {
         Cursor cursor = dbHelper.getUserByEmail(email);
         if (cursor != null && cursor.moveToFirst()) {
@@ -63,15 +66,17 @@ public class EditProfile extends AppCompatActivity {
                 Log.d("EditProfile", "User info updated successfully.");
                 Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
 
-                // Redirect to the home page activity
+                // Redirects user to the Menu page
                 Intent intent = new Intent(EditProfile.this, Menu.class);
                 startActivity(intent);
                 finish(); // Close the current activity
             } else {
+                // Error message
                 Log.e("EditProfile", "Failed to update user info.");
                 Toast.makeText(this, "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
             }
         } else {
+            // Error messages
             Toast.makeText(this, "User with provided email not found", Toast.LENGTH_SHORT).show();
         }
     }

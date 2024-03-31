@@ -17,7 +17,7 @@ public class QRPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrpage);
 
-        // Get customer ID from intent
+        // Retrieves Customer ID
         String customerId = getIntent().getStringExtra("customerID");
 
         // Generate QR code and display
@@ -26,6 +26,7 @@ public class QRPage extends AppCompatActivity {
         imageView.setImageBitmap(bitmap);
     }
 
+    // Method generates QR Code for Customer ID
     private Bitmap generateQRCode(String customerId) {
         Bitmap bitmap = null;
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
