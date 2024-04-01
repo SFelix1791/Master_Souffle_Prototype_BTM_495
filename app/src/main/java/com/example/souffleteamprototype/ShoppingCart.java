@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
@@ -16,8 +17,9 @@ public class ShoppingCart extends AppCompatActivity {
     private Button btnApplyPromo;
     private double price = 9.99; // Price for Cheesecake according to Uber Eats
     private int quantity;
-    private final double TAX_RATE = 0.15; // 15% tax
+    private final double TAX_RATE = 0.15; // 15% GST
     private final double DISCOUNT_RATE = 0.20; // 20% discount for promo code CAKE20
+    private boolean isDiscountApplied = false; // Ensures discount is applied only once
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,43 +44,40 @@ public class ShoppingCart extends AppCompatActivity {
         // Initially calculate and shows totals
         updateTotals();
 
-        // Sets onclick for btnApplyPromo
-        // Applies the promo code
         btnApplyPromo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String promoCode = etPromoCode.getText().toString();
-                if ("CAKE20".equalsIgnoreCase(promoCode)) {
-                    applyDiscount(DISCOUNT_RATE);
+            public void onClick(View v) {
+                if (!isDiscountApplied) {
+                    String promoCode = etPromoCode.getText().toString().trim();
+                    if (promoCode.equalsIgnoreCase("CAKE20")) {
+                        applyDiscount();
+                        Toast.makeText(ShoppingCart.this, "Promo code applied successfully!", Toast.LENGTH_SHORT).show();
+                        isDiscountApplied = true; // Prevents user from applying promo multiple times
+                    } else {
+                        Toast.makeText(ShoppingCart.this, "Invalid promo code.", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    etPromoCode.setError("Invalid promo code");
+                    Toast.makeText(ShoppingCart.this, "Promo code has already been applied.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-    // Method updates totals
+
     private void updateTotals() {
-        double subtotal = calculateSubtotal(price, quantity);
+        double subtotal = price * quantity;
         double tax = subtotal * TAX_RATE;
         double total = subtotal + tax;
-        tvSubtotal.setText(String.format(Locale.getDefault(), "Subtotal: $%.2f", subtotal));
-        tvTax.setText(String.format(Locale.getDefault(), "Tax: $%.2f", tax));
-        tvTotal.setText(String.format(Locale.getDefault(), "Total: $%.2f", total));
-    }
-    // Method calculates subtotal
-    private double calculateSubtotal(double price, int quantity) {
-        return price * quantity;
+
+        if (isDiscountApplied) {
+            total -= total * DISCOUNT_RATE; // Apply discount
+        }
+
+        tvSubtotal.setText(String.format(Locale.getDefault(), "$%.2f", subtotal));
+        tvTax.setText(String.format(Locale.getDefault(), "$%.2f", tax));
+        tvTotal.setText(String.format(Locale.getDefault(), "$%.2f", total));
     }
 
-    // Method applies discount code
-    private void applyDiscount(double discountRate) {
-        double subtotal = calculateSubtotal(price, quantity);
-        double discount = subtotal * discountRate;
-        double discountedSubtotal = subtotal - discount;
-        double tax = discountedSubtotal * TAX_RATE;
-        double total = discountedSubtotal + tax;
-        tvSubtotal.setText(String.format(Locale.getDefault(), "Subtotal: $%.2f", discountedSubtotal));
-        tvTax.setText(String.format(Locale.getDefault(), "Tax: $%.2f", tax));
-        tvTotal.setText(String.format(Locale.getDefault(), "Total: $%.2f", total));
+    private void applyDiscount() {
+        updateTotals(); // Recalculate totals with discount
     }
 }

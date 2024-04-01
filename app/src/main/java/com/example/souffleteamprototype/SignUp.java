@@ -1,6 +1,5 @@
 package com.example.souffleteamprototype;
 
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUp extends AppCompatActivity {
 
-    private EditText etFirstName, etLastName, etEmail, etPassword;
-    private TextView etCustomerId;
+    private EditText etFirstName, etLastName, etEmail, etPassword, etPhone; // Added etPhone for phone number input
+    private TextView etCustomerId, etPoints; // etPoints to display initial points
     private Button btnSignUp;
     private DatabaseHelper dbHelper;
 
@@ -29,16 +28,18 @@ public class SignUp extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         // Initializes UI Elements
-
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etCustomerId = findViewById(R.id.etCustomerId);
+        etPhone = findViewById(R.id.etPhone); // Initialize the EditText for phone number
+        etPoints = findViewById(R.id.etPoints); // Initialize the TextView for points display
         btnSignUp = findViewById(R.id.btnSignUp);
 
-        // Display a unique CustomerID
+        // Display a unique CustomerID and initial points
         etCustomerId.setText(generateCustomerId());
+        etPoints.setText("0"); // Display initial points as "0"
 
         btnSignUp.setOnClickListener(v -> signUp());
     }
@@ -48,14 +49,15 @@ public class SignUp extends AppCompatActivity {
         String lastName = etLastName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
+        String phone = etPhone.getText().toString(); // Get the phone number from the EditText
         String customerId = etCustomerId.getText().toString(); // Retrieve the displayed CustomerID
 
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Method saves the user data and CustomerID in the database
+        // Method saves the user data, phone number, and CustomerID in the database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_CUSTOMER_ID, customerId);
@@ -63,24 +65,28 @@ public class SignUp extends AppCompatActivity {
         values.put(DatabaseHelper.COLUMN_LAST_NAME, lastName);
         values.put(DatabaseHelper.COLUMN_EMAIL, email);
         values.put(DatabaseHelper.COLUMN_PASSWORD, password);
+        values.put(DatabaseHelper.COLUMN_PHONE, phone); // Add phone number to ContentValues
+        values.put(DatabaseHelper.COLUMN_POINTS, 0); // Initialize points to 0
 
         long newRowId = db.insert(DatabaseHelper.TABLE_USERS, null, values);
 
         if (newRowId == -1) {
             Toast.makeText(this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
         } else {
-            // Stores the CustomerID and other user info in SharedPreferences
+            // Stores the CustomerID, phone, and other user info in SharedPreferences
             SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("firstName", firstName);
             editor.putString("lastName", lastName);
             editor.putString("email", email);
             editor.putString("customerId", customerId); // Storing CustomerID
+            editor.putString("phone", phone); // Storing phone number
+            editor.putInt("points", 0); // Storing initial points
             editor.apply();
 
             Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
-            // Log for debugging plus I think it looks nice
-            Log.d("SignUp", "Stored CustomerID in SharedPreferences: " + customerId);
+            // Log for debugging
+            Log.d("SignUp", "User signed up with CustomerID: " + customerId + " and phone: " + phone);
 
             // Redirect to LoginActivity
             Intent intent = new Intent(SignUp.this, LoginActivity.class);

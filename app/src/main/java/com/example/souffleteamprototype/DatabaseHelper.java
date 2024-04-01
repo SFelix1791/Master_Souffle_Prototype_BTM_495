@@ -9,9 +9,9 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    // Database Name and Version (Currently at 4th Version)
+    // Database Name and Version updated for schema change
     public static final String DATABASE_NAME = "UserDatabase";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
 
     // Table & Column Names
     public static final String TABLE_USERS = "users";
@@ -21,15 +21,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_LAST_NAME = "last_name";
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_PASSWORD = "password";
+    public static final String COLUMN_PHONE = "phone";
+    public static final String COLUMN_POINTS = "points";
 
-    // SQL Query: Creates User Tables
+    // SQL Query: Creates User Tables updated to include new columns
     private static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_CUSTOMER_ID + " TEXT UNIQUE,"
             + COLUMN_FIRST_NAME + " TEXT,"
             + COLUMN_LAST_NAME + " TEXT,"
             + COLUMN_EMAIL + " TEXT UNIQUE,"
-            + COLUMN_PASSWORD + " TEXT"
+            + COLUMN_PASSWORD + " TEXT,"
+            + COLUMN_PHONE + " TEXT,"
+            + COLUMN_POINTS + " INTEGER DEFAULT 0" //  Default 0
             + ")";
 
     // Constructor
@@ -41,16 +45,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_USERS);
-        Log.d("DatabaseHelper", "Database and user table created.");
+        Log.d("DatabaseHelper", "Database and user table created with new schema.");
     }
 
     // To upgrade / clear the database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // For actual app releases, consider implementing a migration strategy instead
         Log.d("DatabaseHelper", "Upgrading database, which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         onCreate(db);
     }
+
     // Retrieves user info using Email
     public Cursor getUserByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -75,8 +81,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return rowsAffected;
     }
-
-
 }
-
 
