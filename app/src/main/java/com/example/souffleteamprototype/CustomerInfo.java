@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CustomerInfo extends AppCompatActivity {
 
-    private TextView txtViewFirstName, txtViewLastName, txtViewEmail, txtViewCustomerId;
+    private TextView txtViewFirstName, txtViewLastName, txtViewEmail, txtViewCustomerId, txtViewPhone, txtViewPoints;
     private Button btnShowQR, btnMoveEditProfile;
 
     @Override
@@ -23,11 +23,14 @@ public class CustomerInfo extends AppCompatActivity {
         txtViewLastName = findViewById(R.id.txtViewLastName);
         txtViewEmail = findViewById(R.id.txtViewEmail);
         txtViewCustomerId = findViewById(R.id.txtViewCustomerId);
+        txtViewPhone = findViewById(R.id.txtViewPhone); // Initialize the TextView for phone
+        txtViewPoints = findViewById(R.id.txtViewPoints); // Initialize the TextView for points
         btnShowQR = findViewById(R.id.btnShowQR);
         btnMoveEditProfile = findViewById(R.id.btnMoveEditProfile);
 
-        // Sets onclick for btnShowQR
-        // Brings user to QR page
+        // Loads user info from SharedPreferences
+        loadUserInfoFromSharedPreferences();
+
         btnShowQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,21 +41,15 @@ public class CustomerInfo extends AppCompatActivity {
             }
         });
 
-        // Sets onclick for btnMoveEditProfile
-        // Brings user to Edit Profile page
         btnMoveEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to EditProfileActivity
                 Intent intent = new Intent(CustomerInfo.this, EditProfile.class);
-                // Optionally, pass the email as an extra if needed for fetching user info
                 intent.putExtra("email", txtViewEmail.getText().toString());
                 startActivity(intent);
             }
         });
-
-        // Loads user info from SharedPreferences
-        loadUserInfoFromSharedPreferences();
     }
 
     // Method displays user info
@@ -62,10 +59,14 @@ public class CustomerInfo extends AppCompatActivity {
         String lastName = prefs.getString("lastName", "N/A");
         String email = prefs.getString("email", "N/A");
         String customerId = prefs.getString("customerId", "N/A");
+        String phone = prefs.getString("phone", "N/A"); // Retrieve the phone number
+        int points = prefs.getInt("points", 0); // Retrieve the points
 
         txtViewFirstName.setText(String.format("First Name: %s", firstName));
         txtViewLastName.setText(String.format("Last Name: %s", lastName));
         txtViewEmail.setText(String.format("%s", email));
         txtViewCustomerId.setText(String.format("Customer ID: %s", customerId));
+        txtViewPhone.setText(String.format("Phone: %s", phone)); // Display the phone number
+        txtViewPoints.setText(String.format("Points: %d", points)); // Display the points
     }
 }

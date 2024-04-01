@@ -81,3 +81,5 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 }
+
+// Note to self: Will add phone number later on

@@ -33,6 +33,20 @@
         android:text="Customer ID"
         android:textSize="18sp"/>
 
+    <TextView
+        android:id="@+id/txtViewPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/txtViewPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Points"
+        android:textSize="18sp"/>
+
 
     <Button
         android:id="@+id/btnShowQR"
