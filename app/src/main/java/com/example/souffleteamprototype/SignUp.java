@@ -17,7 +17,7 @@ public class SignUp extends AppCompatActivity {
 
     private EditText etFirstName, etLastName, etEmail, etPassword, etPhone; // Added etPhone for phone number input
     private TextView etCustomerId, etPoints; // etPoints to display initial points
-    private Button btnSignUp;
+    private Button btnSignUp, btnMoveToLogin; // Added btnMoveToLogin
     private DatabaseHelper dbHelper;
 
     @Override
@@ -36,12 +36,20 @@ public class SignUp extends AppCompatActivity {
         etPhone = findViewById(R.id.etPhone); // Initialize the EditText for phone number
         etPoints = findViewById(R.id.etPoints); // Initialize the TextView for points display
         btnSignUp = findViewById(R.id.btnSignUp);
+        btnMoveToLogin = findViewById(R.id.btnMoveToLogin); // Initialize btnMoveToLogin
 
         // Display a unique CustomerID and initial points
         etCustomerId.setText(generateCustomerId());
         etPoints.setText("0"); // Display initial points as "0"
 
         btnSignUp.setOnClickListener(v -> signUp());
+
+        // Add OnClickListener for btnMoveToLogin
+        btnMoveToLogin.setOnClickListener(v -> {
+            // Create an Intent to start LoginActivity
+            Intent intent = new Intent(SignUp.this, LoginActivity.class);
+            startActivity(intent); // Start the LoginActivity
+        });
     }
 
     private void signUp() {

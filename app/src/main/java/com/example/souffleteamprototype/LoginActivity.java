@@ -1,14 +1,14 @@
 package com.example.souffleteamprototype;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Intent;
-import android.util.Log;
 import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
     EditText etEmail, etPassword;
-    Button btnLogin;
+    Button btnLogin, btnMoveToSignup; // Added button for moving to SignUp activity
     DatabaseHelper dbHelper;
+    private int failedLoginAttempts = 0; // Added failed login attempts counter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +32,40 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnMoveToSignup = findViewById(R.id.btnMoveToSignup); // Initialize the button
 
-        // Sets onclick to Log-in User
+        // Sets onClickListener to Log-in User
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
         });
+
+        // Sets onClickListener to move to SignUp activity
+        btnMoveToSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToSignUp();
+            }
+        });
     }
+
+    // Method to move to SignUp activity
+    private void moveToSignUp() {
+        Intent intent = new Intent(LoginActivity.this, SignUp.class);
+        startActivity(intent);
+    }
+
     // Method logs user into the system
     private void login() {
+        // Check if login attempts exceeded
+        if (failedLoginAttempts >= 3) {
+            // Display notification and return, preventing further login attempts
+            Toast.makeText(this, "Login is Disabled, Please Contact Staff", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         // Retrieves email and password from the EditTexts in UI
         String inputEmail = etEmail.getText().toString();
         String inputPassword = etPassword.getText().toString();
@@ -85,14 +109,26 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("email", email);
                     editor.apply();
 
+                    // Reset failed login attempts
+                    failedLoginAttempts = 0;
+
                     // Brings user to the Menu Page upon successful log-in
                     Intent intent = new Intent(LoginActivity.this, Menu.class);
                     startActivity(intent);
                     finish(); // Close LoginActivity
                 }
             } else {
+                // Increment failed login attempts
+                failedLoginAttempts++;
+
                 // Displays error message
                 Toast.makeText(this, "Invalid Email or Password", Toast.LENGTH_SHORT).show();
+
+                // Check if login attempts exceeded after increment
+                if (failedLoginAttempts >= 3) {
+                    // Display notification
+                    Toast.makeText(this, "Login is Disabled, Please Contact Staff", Toast.LENGTH_LONG).show();
+                }
             }
         } catch (Exception e) {
             Log.e("LoginActivity", "Login failed", e);
@@ -104,6 +140,5 @@ public class LoginActivity extends AppCompatActivity {
             db.close();
         }
     }
-
 }
-// Eventually we need to make log-in page lock you out after 3 failed attempts with a message saying email ha been sent
+
