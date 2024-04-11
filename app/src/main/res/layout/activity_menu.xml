@@ -8,7 +8,7 @@
     tools:context=".Menu">
 
     <TextView
-        android:id="@+id/txtItemTitle"
+        android:id="@+id/txtTitle"
         android:layout_width="156dp"
         android:layout_height="124dp"
         android:text="Japanese Cheesecake Medium"
@@ -69,6 +69,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.519"
         app:srcCompat="@drawable/screenshot_2024_03_28_151657" />
+
+    <Button
+        android:id="@+id/btnMoveToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Cart"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="629dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

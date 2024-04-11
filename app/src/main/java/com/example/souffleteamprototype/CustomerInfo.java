@@ -67,6 +67,6 @@ public class CustomerInfo extends AppCompatActivity {
         txtViewEmail.setText(String.format("%s", email));
         txtViewCustomerId.setText(String.format("Customer ID: %s", customerId));
         txtViewPhone.setText(String.format("Phone: %s", phone)); // Display the phone number
-        txtViewPoints.setText(String.format("Points: %d", points)); // Display the points
+        txtViewPoints.setText(String.format("%d", points)); // Display the points
     }
 }

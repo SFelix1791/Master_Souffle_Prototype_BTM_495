@@ -14,13 +14,13 @@
         android:theme="@style/Theme.SouffleTeamPrototype"
         tools:targetApi="31">
         <activity
+            android:name=".ProceedPayment"
+            android:exported="false" />
+        <activity
             android:name=".ShopCart"
             android:exported="false" />
         <activity
             android:name=".CheeseCakeItem"
-            android:exported="false" />
-        <activity
-            android:name=".ShoppingCart"
             android:exported="false" />
         <activity
             android:name=".QRPage"
@@ -45,6 +45,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
