@@ -12,11 +12,12 @@
         android:layout_width="156dp"
         android:layout_height="124dp"
         android:text="Japanese Cheesecake Medium"
+        android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.757" />
@@ -29,22 +30,22 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.772" />
 
     <Button
         android:id="@+id/btnCustomerAccount"
-        android:layout_width="133dp"
-        android:layout_height="80dp"
+        android:layout_width="114dp"
+        android:layout_height="107dp"
         android:text="Customer Account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <ImageView
         android:id="@+id/imagePromo"
@@ -52,7 +53,7 @@
         android:layout_height="178dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.173"
@@ -60,14 +61,16 @@
 
     <ImageButton
         android:id="@+id/btnMoveToItem"
-        android:layout_width="158dp"
-        android:layout_height="146dp"
+        android:layout_width="167dp"
+        android:layout_height="158dp"
+        android:background="@color/cardview_light_background"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519"
+        app:layout_constraintVertical_bias="0.527"
         app:srcCompat="@drawable/screenshot_2024_03_28_151657" />
 
     <Button
@@ -75,8 +78,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Cart"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="629dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.91" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="266dp"
+        android:layout_height="82dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.006"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041"
+        app:srcCompat="@drawable/logo_souffle_removebg_preview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

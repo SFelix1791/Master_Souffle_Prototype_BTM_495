@@ -1,5 +1,6 @@
 package com.example.souffleteamprototype;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,7 @@ public class ShopCart extends AppCompatActivity {
 
     private TextView tvItemList, tvSubtotal, tvTax, tvTotal, tvDiscount;
     private EditText etPromoCode;
-    private Button btnApplyPromo;
+    private Button btnApplyPromo, btnCheckout;
     private final double TAX_RATE = 0.15;
     private final double DISCOUNT_RATE = 0.20;
     private double subtotal;
@@ -32,13 +33,16 @@ public class ShopCart extends AppCompatActivity {
         tvSubtotal = findViewById(R.id.tvSubtotal);
         tvTax = findViewById(R.id.tvTax);
         tvTotal = findViewById(R.id.tvTotal);
-        tvDiscount = findViewById(R.id.tvDiscount); // Make sure you have a TextView with this ID
-        etPromoCode = findViewById(R.id.etPromoCode); // And an EditText with this ID
-        btnApplyPromo = findViewById(R.id.btnApplyPromo); // And a Button with this ID
+        tvDiscount = findViewById(R.id.tvDiscount);
+        etPromoCode = findViewById(R.id.etPromoCode);
+        btnApplyPromo = findViewById(R.id.btnApplyPromo);
+        btnCheckout = findViewById(R.id.btnCheckout); // Initialize btnCheckout button
 
+        // Calculate items and update totals
         calculateItems();
         updateTotals();
 
+        // Apply promo code button onClick listener
         btnApplyPromo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +56,16 @@ public class ShopCart extends AppCompatActivity {
                 } else {
                     Toast.makeText(ShopCart.this, "Invalid promo code.", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        // Checkout button onClick listener
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Proceed to payment page
+                Intent intent = new Intent(ShopCart.this, ProceedPayment.class);
+                startActivity(intent);
             }
         });
     }
