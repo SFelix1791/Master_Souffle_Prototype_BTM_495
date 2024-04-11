@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton; // Import ImageButton
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -12,11 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Menu extends AppCompatActivity {
 
-    private TextView tvQuantity;
-    private Button btnIncreaseQuantity, btnDecreaseQuantity, btnViewCart, btnCustomerAccount;
-
-    // Quantity of items selected
-    private int quantity = 1;
+    private Button btnCustomerAccount;
+    private ImageButton btnMoveToItem; // Change the type to ImageButton
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +26,8 @@ public class Menu extends AppCompatActivity {
         });
 
         // Initialize UI elements
-        tvQuantity = findViewById(R.id.tvQuantity);
-        btnIncreaseQuantity = findViewById(R.id.btnIncreaseQuantity);
-        btnDecreaseQuantity = findViewById(R.id.btnDecreaseQuantity);
-        btnViewCart = findViewById(R.id.btnViewCart);
         btnCustomerAccount = findViewById(R.id.btnCustomerAccount);
+        btnMoveToItem = findViewById(R.id.btnMoveToItem); // Initialize ImageButton
 
         // Sets onclick for btnCustomerAccount
         // Brings user to Customer Account page
@@ -46,41 +40,15 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        // Increases quantity of item
-        btnIncreaseQuantity.setOnClickListener(new View.OnClickListener() {
+        // Sets onclick for btnMoveToItem
+        // Brings user to CheeseCakeItem page
+        btnMoveToItem.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                quantity++;
-                updateQuantityDisplay();
-            }
-        });
-
-        // Decreases quantity of item
-        btnDecreaseQuantity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (quantity > 1) { // Ensure we don't go below 1
-                    quantity--;
-                    updateQuantityDisplay();
-                }
-            }
-        });
-
-        // Sets onclick for btnViewCart
-        // Brings user to Cart page
-        btnViewCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Menu.this, ShoppingCart.class);
-                // Pass the quantity to ShoppingCart
-                intent.putExtra("quantity", quantity);
+            public void onClick(View v) {
+                // Start the CheeseCakeItem activity
+                Intent intent = new Intent(Menu.this, CheeseCakeItem.class);
                 startActivity(intent);
             }
         });
-    }
-
-    // Updates the quantity display
-    private void updateQuantityDisplay() {
-        tvQuantity.setText(String.format("Quantity: %d", quantity));
     }
 }
