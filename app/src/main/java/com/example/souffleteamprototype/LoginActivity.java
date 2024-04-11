@@ -99,10 +99,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    // Clears all information in ShoppingCart upon Logging-out
     private void clearCartInfo() {
         SharedPreferences cartPreferences = getSharedPreferences("CartPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = cartPreferences.edit();
-        editor.clear(); // Clears all data in CartPrefs
+        editor.clear();
         editor.apply();
     }
 }

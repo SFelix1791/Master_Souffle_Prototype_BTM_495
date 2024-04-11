@@ -28,14 +28,14 @@
         android:text="Pay at the counter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136"
-        tools:layout_editor_absoluteX="-16dp" />
+        app:layout_constraintVertical_bias="0.171"
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/txtCardHolderName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Card Holder Name"
+        android:hint="John Doe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
@@ -60,35 +60,95 @@
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72" />
+        app:layout_constraintVertical_bias="0.693" />
 
     <EditText
         android:id="@+id/txtCVV"
         android:layout_width="136dp"
         android:layout_height="50dp"
         android:layout_weight="1"
-        android:hint="CVV"
+        android:hint="***"
         android:inputType="numberPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <Button
         android:id="@+id/btnProceedPayment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Proceed Payment"
+        android:layout_width="144dp"
+        android:layout_height="79dp"
+        android:text="Submit Payment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.875" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="216dp"
+        android:layout_height="49dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.831" />
+        app:layout_constraintVertical_bias="0.039"
+        app:srcCompat="@drawable/proceedpayment" />
+
+    <ImageView
+        android:id="@+id/imgMasterCard"
+        android:layout_width="40dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.595"
+        app:srcCompat="@drawable/mastercard_logo" />
+
+    <ImageView
+        android:id="@+id/imgVisa"
+        android:layout_width="47dp"
+        android:layout_height="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.596"
+        app:srcCompat="@drawable/vids_logo" />
+
+    <Button
+        android:id="@+id/btnAddCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402" />
+
+    <Button
+        android:id="@+id/btnEditCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.715"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

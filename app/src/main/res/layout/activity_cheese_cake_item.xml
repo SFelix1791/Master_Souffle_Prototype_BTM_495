@@ -37,8 +37,8 @@
 
     <Button
         android:id="@+id/btnAddToCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="101dp"
+        android:layout_height="55dp"
         android:text="Add to Cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,8 +49,8 @@
 
     <Button
         android:id="@+id/btnViewCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="99dp"
+        android:layout_height="51dp"
         android:text="View Cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

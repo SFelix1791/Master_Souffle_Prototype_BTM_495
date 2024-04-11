@@ -62,8 +62,8 @@ public class CustomerInfo extends AppCompatActivity {
         String phone = prefs.getString("phone", "N/A"); // Retrieve the phone number
         int points = prefs.getInt("points", 0); // Retrieve the points
 
-        txtViewFirstName.setText(String.format("First Name: %s", firstName));
-        txtViewLastName.setText(String.format("Last Name: %s", lastName));
+        txtViewFirstName.setText(String.format("%s", firstName));
+        txtViewLastName.setText(String.format("%s", lastName));
         txtViewEmail.setText(String.format("%s", email));
         txtViewCustomerId.setText(String.format("Customer ID: %s", customerId));
         txtViewPhone.setText(String.format("Phone: %s", phone)); // Display the phone number

@@ -31,11 +31,12 @@ public class OrderStatus extends AppCompatActivity {
         btnModifyOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the Menu.java activity
-                Intent intent = new Intent(OrderStatus.this, Menu.class);
+                // Start the ShopCart.java activity
+                Intent intent = new Intent(OrderStatus.this, ShopCart.class);
                 startActivity(intent);
 
-                // Display a notification
+                // Display Order Modification Request Status notification
+                // Since there is no Staff interface in the prototype, it is automatically approved
                 Toast.makeText(OrderStatus.this, "Order Modification Request Approved", Toast.LENGTH_SHORT).show();
             }
         });

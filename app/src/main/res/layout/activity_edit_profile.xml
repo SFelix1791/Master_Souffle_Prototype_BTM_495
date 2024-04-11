@@ -54,13 +54,13 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688"
+        app:layout_constraintVertical_bias="0.9"
         tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/btnSaveChanges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="58dp"
         android:text="Save Changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,10 +70,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="313dp"
-        android:layout_height="101dp"
+        android:layout_width="315dp"
+        android:layout_height="51dp"
         android:text="User must log back in to see changes to account information"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="66dp" />
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.198" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

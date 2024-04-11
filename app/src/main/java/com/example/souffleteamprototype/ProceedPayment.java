@@ -27,12 +27,11 @@ public class ProceedPayment extends AppCompatActivity {
         });
 
         btnProceedPayment = findViewById(R.id.btnProceedPayment);
-
+        // Since prototype is not connected to Clover payment system, it automatically accepts any input to proceed
         btnProceedPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Generate order ID and store in the database (not implemented in this code snippet)
-                // Navigate to OrderStatus activity
+                // Brings user to OrderStatus activity
                 Intent intent = new Intent(ProceedPayment.this, OrderStatus.class);
                 startActivity(intent);
             }
