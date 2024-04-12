@@ -9,27 +9,16 @@
 
     <TextView
         android:id="@+id/tvItemList"
-        android:layout_width="402dp"
-        android:layout_height="307dp"
+        android:layout_width="364dp"
+        android:layout_height="308dp"
         android:text="Item List"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
-
-    <TextView
-        android:id="@+id/tvSubtotal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Subtotal"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.695"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.186" />
 
     <TextView
         android:id="@+id/tvTax"
@@ -39,7 +28,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.726"
+        app:layout_constraintVertical_bias="0.799"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
@@ -50,7 +39,18 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757"
+        app:layout_constraintVertical_bias="0.83"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tvSubtotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subtotal"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.768"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
@@ -61,13 +61,13 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.799"
+        app:layout_constraintVertical_bias="0.874"
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/etPromoCode"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="289dp"
+        android:layout_height="48dp"
         android:ems="10"
         android:hint="Promo Code"
         android:inputType="textCapCharacters"
@@ -76,7 +76,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.693" />
 
     <Button
         android:id="@+id/btnApplyPromo"
@@ -104,7 +104,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -114,8 +114,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/cart_image" />
+
+    <Button
+        android:id="@+id/btnClearCart"
+        android:layout_width="176dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Clear Cart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574" />
+
+    <ImageButton
+        android:id="@+id/btnBackMenu"
+        android:layout_width="87dp"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.027"
+        app:srcCompat="@drawable/back_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

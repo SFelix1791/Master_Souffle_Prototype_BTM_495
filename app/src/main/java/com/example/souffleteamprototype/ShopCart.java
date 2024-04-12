@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,8 @@ public class ShopCart extends AppCompatActivity {
 
     private TextView tvItemList, tvSubtotal, tvTax, tvTotal, tvDiscount;
     private EditText etPromoCode;
-    private Button btnApplyPromo, btnCheckout;
+    private Button btnApplyPromo, btnCheckout, btnClearCart;
+    private ImageButton btnBackMenu;
     private final double TAX_RATE = 0.15;
     private final double DISCOUNT_RATE = 0.20;
     private double subtotal;
@@ -31,6 +33,17 @@ public class ShopCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_cart);
 
+        initViews();
+
+        cartItems = new HashMap<>();
+
+        calculateItems();
+        updateTotals();
+
+        setupListeners();
+    }
+
+    private void initViews() {
         tvItemList = findViewById(R.id.tvItemList);
         tvSubtotal = findViewById(R.id.tvSubtotal);
         tvTax = findViewById(R.id.tvTax);
@@ -39,29 +52,48 @@ public class ShopCart extends AppCompatActivity {
         etPromoCode = findViewById(R.id.etPromoCode);
         btnApplyPromo = findViewById(R.id.btnApplyPromo);
         btnCheckout = findViewById(R.id.btnCheckout);
+        btnClearCart = findViewById(R.id.btnClearCart);
+        btnBackMenu = findViewById(R.id.btnBackMenu);
+    }
 
-        cartItems = new HashMap<>();
+    private void setupListeners() {
+        btnApplyPromo.setOnClickListener(v -> applyPromoCode());
+        btnCheckout.setOnClickListener(v -> checkout());
+        btnClearCart.setOnClickListener(v -> clearCart());
+        btnBackMenu.setOnClickListener(v -> backToMenu());
+    }
+    private void backToMenu() {
+        Intent intent = new Intent(this, Menu.class);
+        startActivity(intent);
+    }
+    private void applyPromoCode() {
+        String promoCode = etPromoCode.getText().toString();
+        if ("CAKE20".equalsIgnoreCase(promoCode) && !isDiscountApplied) {
+            applyDiscount();
+            Toast.makeText(this, "Discount applied!", Toast.LENGTH_SHORT).show();
+            updateTotals();
+        } else {
+            Toast.makeText(this, isDiscountApplied ? "Promo code already applied." : "Invalid promo code.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        calculateItems();
+    private void checkout() {
+        Intent intent = new Intent(this, ProceedPayment.class);
+        startActivity(intent);
+    }
+
+    private void clearCart() {
+        SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+
+        cartItems.clear();
+        subtotal = 0.0;
+        displayCartItems();
         updateTotals();
 
-        btnApplyPromo.setOnClickListener(v -> {
-            String promoCode = etPromoCode.getText().toString();
-            if ("CAKE20".equalsIgnoreCase(promoCode) && !isDiscountApplied) {
-                applyDiscount();
-                Toast.makeText(ShopCart.this, "Discount applied!", Toast.LENGTH_SHORT).show();
-                updateTotals();
-            } else if (isDiscountApplied) {
-                Toast.makeText(ShopCart.this, "Promo code already applied.", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(ShopCart.this, "Invalid promo code.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnCheckout.setOnClickListener(v -> {
-            Intent intent = new Intent(ShopCart.this, ProceedPayment.class);
-            startActivity(intent);
-        });
+        Toast.makeText(this, "Cart cleared.", Toast.LENGTH_SHORT).show();
     }
 
     private void calculateItems() {
@@ -77,11 +109,10 @@ public class ShopCart extends AppCompatActivity {
                 int quantity = Integer.parseInt(parts[0]);
                 double price = Double.parseDouble(parts[1]);
                 String topping = parts[2];
-                String key = topping;
 
-                CheesecakeItemWithQuantity item = cartItems.getOrDefault(key, new CheesecakeItemWithQuantity(price, topping, 0));
+                CheesecakeItemWithQuantity item = cartItems.getOrDefault(topping, new CheesecakeItemWithQuantity(price, topping, 0));
                 item.quantity += quantity;
-                cartItems.put(key, item);
+                cartItems.put(topping, item);
 
                 subtotal += price * quantity;
             }
