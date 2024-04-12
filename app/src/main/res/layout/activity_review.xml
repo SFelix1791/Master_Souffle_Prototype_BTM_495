@@ -7,20 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Review">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="327dp"
-        android:layout_height="73dp"
-        android:gravity="center"
-        android:text="Your Reviews"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
-
     <ListView
         android:id="@+id/listViewReviews"
         android:layout_width="376dp"
@@ -46,5 +32,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.873" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="241dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/your_reviews" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
