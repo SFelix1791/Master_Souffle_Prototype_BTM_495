@@ -9,14 +9,16 @@
 
     <TextView
         android:id="@+id/tvItemList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="330dp"
+        android:layout_height="94dp"
         android:text="Item List"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.221" />
 
     <TextView
         android:id="@+id/tvSubtotal"
@@ -80,7 +82,10 @@
         android:id="@+id/btnApplyPromo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
         android:text="Apply"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/etPromoCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/etPromoCode"
@@ -89,9 +94,12 @@
 
     <Button
         android:id="@+id/btnCheckout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="195dp"
+        android:layout_height="57dp"
+        android:fontFamily="@font/inter_bold"
         android:text="Checkout"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

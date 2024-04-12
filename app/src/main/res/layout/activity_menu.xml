@@ -7,83 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".Menu">
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="156dp"
-        android:layout_height="124dp"
-        android:text="Japanese Cheesecake Medium"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757" />
-
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$9.99"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
-
-    <Button
-        android:id="@+id/btnCustomerAccount"
-        android:layout_width="114dp"
-        android:layout_height="107dp"
-        android:text="Customer Account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062" />
-
-    <ImageView
-        android:id="@+id/imagePromo"
-        android:layout_width="254dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173"
-        app:srcCompat="@drawable/promotion_image" />
-
     <ImageButton
         android:id="@+id/btnMoveToItem"
-        android:layout_width="167dp"
-        android:layout_height="158dp"
-        android:background="@color/cardview_light_background"
+        android:layout_width="187dp"
+        android:layout_height="291dp"
+        android:background="@color/white"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527"
-        app:srcCompat="@drawable/screenshot_2024_03_28_151657" />
+        app:layout_constraintVertical_bias="0.643"
+        app:srcCompat="@drawable/cheesecakeicon" />
 
     <Button
         android:id="@+id/btnMoveToCart"
         android:layout_width="125dp"
         android:layout_height="68dp"
+        android:fontFamily="@font/inter_bold"
         android:text="View Cart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#333"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="0.914" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -96,6 +47,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.041"
         app:srcCompat="@drawable/logo_souffle_removebg_preview" />
+
+    <ImageButton
+        android:id="@+id/btnCustomerAccount"
+        android:layout_width="88dp"
+        android:layout_height="69dp"
+        android:background="@color/cardview_light_background"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06"
+        app:srcCompat="@drawable/user_circle_icon_2048x2048_lmkqor95_removebg_preview" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="437dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.147"
+        app:srcCompat="@drawable/promo_bar_new" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

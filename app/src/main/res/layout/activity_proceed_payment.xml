@@ -9,47 +9,27 @@
     <!-- Title: Payment Type -->
 
 
-
-    <RadioButton
-        android:id="@+id/radOnlinePayment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="Online payment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229"
-        tools:layout_editor_absoluteX="-16dp" />
-
-    <RadioButton
-        android:id="@+id/radPayAtCounter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pay at the counter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.171"
-        tools:layout_editor_absoluteX="0dp" />
-
     <EditText
         android:id="@+id/txtCardHolderName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="John Doe"
+        android:layout_width="371dp"
+        android:layout_height="44dp"
+        android:hint="Card Holder Name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtCardNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="371dp"
+        android:layout_height="44dp"
         android:hint="Card Number"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.606"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.606" />
 
     <EditText
         android:id="@+id/expirationDate"
@@ -67,8 +47,8 @@
 
     <EditText
         android:id="@+id/txtCVV"
-        android:layout_width="136dp"
-        android:layout_height="50dp"
+        android:layout_width="141dp"
+        android:layout_height="43dp"
         android:layout_weight="1"
         android:hint="***"
         android:inputType="numberPassword"
@@ -83,7 +63,10 @@
         android:id="@+id/btnProceedPayment"
         android:layout_width="144dp"
         android:layout_height="79dp"
-        android:text="Submit Payment"
+        android:fontFamily="@font/inter_bold"
+        android:text="Proceed"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -109,7 +92,7 @@
         android:layout_height="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.595"
@@ -121,7 +104,7 @@
         android:layout_height="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.596"
@@ -131,7 +114,9 @@
         android:id="@+id/btnAddCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
         android:text="Add Card"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.3"
@@ -143,12 +128,39 @@
         android:id="@+id/btnEditCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
         android:text="Edit Card"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.715"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.402" />
+
+    <RadioButton
+        android:id="@+id/radCounter"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        android:background="@color/Peach"
+        android:text="Pay at Counter"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.206" />
+
+    <RadioButton
+        android:id="@+id/radOnlinePayment"
+        android:layout_width="395dp"
+        android:layout_height="32dp"
+        android:background="@color/Peach"
+        android:text="Online Payment"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283"
+        tools:layout_editor_absoluteX="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

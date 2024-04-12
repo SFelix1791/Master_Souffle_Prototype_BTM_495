@@ -12,8 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Menu extends AppCompatActivity {
 
-    private Button btnCustomerAccount, btnMoveToCart; // Add btnMoveToCart declaration here
-    private ImageButton btnMoveToItem;
+    private Button btnMoveToCart; // Add btnMoveToCart declaration here
+    private ImageButton btnMoveToItem, btnCustomerAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

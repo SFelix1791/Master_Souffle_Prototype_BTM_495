@@ -10,39 +10,45 @@
 
     <Button
         android:id="@+id/btnConfirmOrder"
-        android:layout_width="152dp"
-        android:layout_height="83dp"
+        android:layout_width="240dp"
+        android:layout_height="66dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/inter_bold"
         android:text="Confirm Order"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintVertical_bias="0.765" />
 
     <Button
         android:id="@+id/btnModifyOrder"
-        android:layout_width="158dp"
-        android:layout_height="86dp"
+        android:layout_width="236dp"
+        android:layout_height="71dp"
         android:layout_below="@id/btnConfirmOrder"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/inter_bold"
         android:text="Modify Order"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+        app:layout_constraintVertical_bias="0.931" />
 
     <TextView
         android:id="@+id/txtPickUpInfo"
         android:layout_width="385dp"
-        android:layout_height="42dp"
+        android:layout_height="88dp"
         android:text="Pick up at Eaton Centre  705 Saint-Catherine St W #1-264, Montreal, Quebec H3B 4G5 (514) 378-2253"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.615"
@@ -70,6 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.467"
         app:srcCompat="@drawable/orderradbtn_removebg_preview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
