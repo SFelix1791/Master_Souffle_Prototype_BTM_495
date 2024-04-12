@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CustomerInfo extends AppCompatActivity {
 
     private TextView txtViewFirstName, txtViewLastName, txtViewEmail, txtViewCustomerId, txtViewPhone, txtViewPoints;
-    private Button btnShowQR, btnMoveEditProfile;
+    private Button btnShowQR, btnMoveEditProfile, btnMoveToReview; // Added btnMoveToReview
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +23,11 @@ public class CustomerInfo extends AppCompatActivity {
         txtViewLastName = findViewById(R.id.txtViewLastName);
         txtViewEmail = findViewById(R.id.txtViewEmail);
         txtViewCustomerId = findViewById(R.id.txtViewCustomerId);
-        txtViewPhone = findViewById(R.id.txtViewPhone); // Initialize the TextView for phone
-        txtViewPoints = findViewById(R.id.txtViewPoints); // Initialize the TextView for points
+        txtViewPhone = findViewById(R.id.txtViewPhone);
+        txtViewPoints = findViewById(R.id.txtViewPoints);
         btnShowQR = findViewById(R.id.btnShowQR);
         btnMoveEditProfile = findViewById(R.id.btnMoveEditProfile);
+        btnMoveToReview = findViewById(R.id.btnMoveToReview); // Initialize the button to move to Review
 
         // Loads user info from SharedPreferences
         loadUserInfoFromSharedPreferences();
@@ -47,6 +48,15 @@ public class CustomerInfo extends AppCompatActivity {
                 // Navigate to EditProfileActivity
                 Intent intent = new Intent(CustomerInfo.this, EditProfile.class);
                 intent.putExtra("email", txtViewEmail.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        btnMoveToReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to Review activity
+                Intent intent = new Intent(CustomerInfo.this, Review.class);
                 startActivity(intent);
             }
         });

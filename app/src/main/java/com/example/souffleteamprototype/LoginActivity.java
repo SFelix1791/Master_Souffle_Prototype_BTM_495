@@ -57,22 +57,26 @@ public class LoginActivity extends AppCompatActivity {
         String selection = DatabaseHelper.COLUMN_EMAIL + " = ? AND " + DatabaseHelper.COLUMN_PASSWORD + " = ?";
         String[] selectionArgs = {inputEmail, inputPassword};
 
-        try (Cursor cursor = db.query(DatabaseHelper.TABLE_USERS, null, selection, selectionArgs, null, null, null)) {
+        try {
+            Cursor cursor = db.query(DatabaseHelper.TABLE_USERS, null, selection, selectionArgs, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
+                int userIdIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_ID);
                 int firstNameIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRST_NAME);
                 int lastNameIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_LAST_NAME);
                 int emailIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL);
 
-                if (firstNameIndex == -1 || lastNameIndex == -1 || emailIndex == -1) {
+                if (userIdIndex == -1 || firstNameIndex == -1 || lastNameIndex == -1 || emailIndex == -1) {
                     Log.e("LoginActivity", "One or more column indices are invalid.");
                     Toast.makeText(this, "Invalid column indices", Toast.LENGTH_SHORT).show();
                 } else {
+                    long userId = cursor.getLong(userIdIndex); // Retrieve the user ID
                     String firstName = cursor.getString(firstNameIndex);
                     String lastName = cursor.getString(lastNameIndex);
                     String email = cursor.getString(emailIndex);
 
                     SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
+                    editor.putLong("userId", userId); // Save the user ID
                     editor.putString("firstName", firstName);
                     editor.putString("lastName", lastName);
                     editor.putString("email", email);
@@ -83,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+                cursor.close();
             } else {
                 failedLoginAttempts++;
                 Toast.makeText(this, "Invalid Email or Password", Toast.LENGTH_SHORT).show();

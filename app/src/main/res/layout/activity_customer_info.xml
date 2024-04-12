@@ -96,18 +96,18 @@
 
     <Button
         android:id="@+id/btnShowQR"
-        android:layout_width="126dp"
-        android:layout_height="54dp"
+        android:layout_width="224dp"
+        android:layout_height="53dp"
         android:fontFamily="@font/inter_bold"
         android:text="Show QR Code"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintVertical_bias="0.893" />
 
     <Button
         android:id="@+id/btnMoveEditProfile"
@@ -151,5 +151,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068"
         app:srcCompat="@drawable/user_circle_icon_2048x2048_lmkqor95_removebg_preview" />
+
+    <Button
+        android:id="@+id/btnMoveToReview"
+        android:layout_width="218dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Reviews"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.785" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

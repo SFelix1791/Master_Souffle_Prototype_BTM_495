@@ -11,11 +11,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Name and Version updated for schema change
     public static final String DATABASE_NAME = "UserDatabase";
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
 
     // Table & Column Names
     public static final String TABLE_USERS = "users";
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "id"; // User ID
     public static final String COLUMN_CUSTOMER_ID = "customer_id";
     public static final String COLUMN_FIRST_NAME = "first_name";
     public static final String COLUMN_LAST_NAME = "last_name";
@@ -23,6 +23,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PASSWORD = "password";
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_POINTS = "points";
+
+    // Table for Reviews
+    public static final String TABLE_REVIEWS = "reviews";
+    public static final String COLUMN_REVIEW_ID = "review_id";
+    public static final String COLUMN_USER_ID = "user_id";  // Foreign key from users table
+    public static final String COLUMN_REVIEW_TEXT = "review_text";
+    public static final String COLUMN_RATING = "rating";
 
     // SQL Query: Creates User Tables updated to include new columns
     private static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS + "("
@@ -33,8 +40,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_EMAIL + " TEXT UNIQUE,"
             + COLUMN_PASSWORD + " TEXT,"
             + COLUMN_PHONE + " TEXT,"
-            + COLUMN_POINTS + " INTEGER DEFAULT 0" //  Default 0
+            + COLUMN_POINTS + " INTEGER DEFAULT 0"  // Default 0
             + ")";
+
+    // SQL for creating Reviews Table
+    private static final String CREATE_TABLE_REVIEWS = "CREATE TABLE " + TABLE_REVIEWS + "("
+            + COLUMN_REVIEW_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_USER_ID + " INTEGER,"
+            + COLUMN_REVIEW_TEXT + " TEXT,"
+            + COLUMN_RATING + " INTEGER,"
+            + "FOREIGN KEY (" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_ID + "))";
 
     // Constructor
     public DatabaseHelper(Context context) {
@@ -45,7 +60,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_USERS);
-        Log.d("DatabaseHelper", "Database and user table created with new schema.");
+        db.execSQL(CREATE_TABLE_REVIEWS); // Create reviews table
+        Log.d("DatabaseHelper", "Database and tables created with new schema.");
     }
 
     // To upgrade / clear the database
@@ -54,6 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // For actual app releases, consider implementing a migration strategy instead
         Log.d("DatabaseHelper", "Upgrading database, which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_REVIEWS);
         onCreate(db);
     }
 
@@ -81,5 +98,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return rowsAffected;
     }
-}
 
+    // Method to add a review
+    public boolean addReview(long userId, String reviewText, int rating) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USER_ID, userId);
+        values.put(COLUMN_REVIEW_TEXT, reviewText);
+        values.put(COLUMN_RATING, rating);
+
+        long result = db.insert(TABLE_REVIEWS, null, values);
+        db.close();
+        return result != -1; // Return true if insertion is successful
+    }
+
+    // Method to retrieve reviews for a specific user
+    public Cursor getReviewsByUserId(long userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_REVIEWS, new String[] {COLUMN_REVIEW_TEXT, COLUMN_RATING}, COLUMN_USER_ID + "=?", new String[] {String.valueOf(userId)}, null, null, null);
+    }
+}
