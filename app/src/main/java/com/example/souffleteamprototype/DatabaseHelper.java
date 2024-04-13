@@ -9,13 +9,13 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    // Database Name and Version updated for schema change
+    // Database Name and Version
     public static final String DATABASE_NAME = "UserDatabase";
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
 
     // Table & Column Names
     public static final String TABLE_USERS = "users";
-    public static final String COLUMN_ID = "id"; // User ID
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_CUSTOMER_ID = "customer_id";
     public static final String COLUMN_FIRST_NAME = "first_name";
     public static final String COLUMN_LAST_NAME = "last_name";
@@ -24,14 +24,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_POINTS = "points";
 
-    // Table for Reviews
+    // Table for General Reviews
     public static final String TABLE_REVIEWS = "reviews";
     public static final String COLUMN_REVIEW_ID = "review_id";
     public static final String COLUMN_USER_ID = "user_id";  // Foreign key from users table
     public static final String COLUMN_REVIEW_TEXT = "review_text";
     public static final String COLUMN_RATING = "rating";
 
-    // SQL Query: Creates User Tables updated to include new columns
+    // New Table for Order Feedback
+    public static final String TABLE_ORDER_FEEDBACK = "order_feedback";
+    public static final String COLUMN_FEEDBACK_ID = "feedback_id";
+    public static final String COLUMN_FEEDBACK_USER_ID = "user_id";
+    public static final String COLUMN_FEEDBACK_TEXT = "feedback_text";
+    public static final String COLUMN_FEEDBACK_RATING = "rating";
+
+    // SQL for creating tables
     private static final String CREATE_TABLE_USERS = "CREATE TABLE " + TABLE_USERS + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_CUSTOMER_ID + " TEXT UNIQUE,"
@@ -40,38 +47,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_EMAIL + " TEXT UNIQUE,"
             + COLUMN_PASSWORD + " TEXT,"
             + COLUMN_PHONE + " TEXT,"
-            + COLUMN_POINTS + " INTEGER DEFAULT 0"  // Default 0
+            + COLUMN_POINTS + " INTEGER DEFAULT 0"
             + ")";
 
-    // SQL for creating Reviews Table
     private static final String CREATE_TABLE_REVIEWS = "CREATE TABLE " + TABLE_REVIEWS + "("
             + COLUMN_REVIEW_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_USER_ID + " INTEGER,"
             + COLUMN_REVIEW_TEXT + " TEXT,"
             + COLUMN_RATING + " INTEGER,"
-            + "FOREIGN KEY (" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_ID + "))";
+            + "FOREIGN KEY (" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_ID + ")"
+            + ")";
 
-    // Constructor
+    private static final String CREATE_TABLE_ORDER_FEEDBACK = "CREATE TABLE " + TABLE_ORDER_FEEDBACK + "("
+            + COLUMN_FEEDBACK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_FEEDBACK_USER_ID + " INTEGER,"
+            + COLUMN_FEEDBACK_TEXT + " TEXT,"
+            + COLUMN_FEEDBACK_RATING + " INTEGER,"
+            + "FOREIGN KEY (" + COLUMN_FEEDBACK_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_ID + ")"
+            + ")";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // To create database
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_USERS);
-        db.execSQL(CREATE_TABLE_REVIEWS); // Create reviews table
+        db.execSQL(CREATE_TABLE_REVIEWS);
+        db.execSQL(CREATE_TABLE_ORDER_FEEDBACK);  // Create the order feedback table
         Log.d("DatabaseHelper", "Database and tables created with new schema.");
     }
 
-    // To upgrade / clear the database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // For actual app releases, consider implementing a migration strategy instead
-        Log.d("DatabaseHelper", "Upgrading database, which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_REVIEWS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_FEEDBACK);
         onCreate(db);
+    }
+
+    public boolean addOrderFeedback(long userId, String feedbackText, int rating) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_FEEDBACK_USER_ID, userId);
+        values.put(COLUMN_FEEDBACK_TEXT, feedbackText);
+        values.put(COLUMN_FEEDBACK_RATING, rating);
+
+        long result = db.insert(TABLE_ORDER_FEEDBACK, null, values);
+        db.close();
+        return result != -1;
+    }
+
+    public Cursor getAllOrderFeedback() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_ORDER_FEEDBACK, new String[]{COLUMN_FEEDBACK_TEXT, COLUMN_FEEDBACK_RATING}, null, null, null, null, null);
     }
 
     // Retrieves user info using Email

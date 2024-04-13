@@ -56,7 +56,7 @@ public class CustomerInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to Review activity
-                Intent intent = new Intent(CustomerInfo.this, Review.class);
+                Intent intent = new Intent(CustomerInfo.this, Feedback.class);
                 startActivity(intent);
             }
         });

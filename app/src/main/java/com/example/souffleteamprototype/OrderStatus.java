@@ -26,6 +26,7 @@ public class OrderStatus extends AppCompatActivity {
 
         // Find the btnModifyOrder button by its ID
         Button btnModifyOrder = findViewById(R.id.btnModifyOrder);
+        Button btnConfirmOrder = findViewById(R.id.btnConfirmOrder);
 
         // Set an OnClickListener for the btnModifyOrder button
         btnModifyOrder.setOnClickListener(new View.OnClickListener() {
@@ -40,5 +41,14 @@ public class OrderStatus extends AppCompatActivity {
                 Toast.makeText(OrderStatus.this, "Order Modification Request Approved", Toast.LENGTH_SHORT).show();
             }
         });
+        btnConfirmOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the OrderFeedback.java activity
+                Intent intent = new Intent(OrderStatus.this, OrderFeedback.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

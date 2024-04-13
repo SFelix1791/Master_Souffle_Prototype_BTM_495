@@ -5,44 +5,41 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Review">
+    tools:context=".ViewOrderFeedback">
 
     <ListView
-        android:id="@+id/listViewReviews"
-        android:layout_width="376dp"
-        android:layout_height="417dp"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp"
+        android:id="@+id/listViewFeedback"
+        android:layout_width="356dp"
+        android:layout_height="458dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34" />
+        app:layout_constraintVertical_bias="0.375" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="334dp"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001"
+        app:srcCompat="@drawable/previousreviews" />
 
     <Button
-        android:id="@+id/btnMoveToCreateReview"
-        android:layout_width="153dp"
-        android:layout_height="82dp"
+        android:id="@+id/btnBackToFeedback"
+        android:layout_width="113dp"
+        android:layout_height="63dp"
         android:fontFamily="@font/inter_bold"
-        android:text="Create Comment"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:text="Back"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873" />
-
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="344dp"
-        android:layout_height="83dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024"
-        app:srcCompat="@drawable/previouscomments" />
-
+        app:layout_constraintVertical_bias="0.888" />
 </androidx.constraintlayout.widget.ConstraintLayout>

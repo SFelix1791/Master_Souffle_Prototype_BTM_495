@@ -90,9 +90,12 @@ public class ShopCart extends AppCompatActivity {
 
         cartItems.clear();
         subtotal = 0.0;
+        discountAmount = 0.0;  // Reset discount amount
+        isDiscountApplied = false;  // Reset discount application flag
         displayCartItems();
         updateTotals();
 
+        tvDiscount.setText("$0.00");
         Toast.makeText(this, "Cart cleared.", Toast.LENGTH_SHORT).show();
     }
 
