@@ -139,29 +139,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.402" />
 
-    <RadioButton
-        android:id="@+id/radCounter"
-        android:layout_width="395dp"
-        android:layout_height="wrap_content"
-        android:background="@color/Peach"
-        android:text="Pay at Counter"
-        android:textSize="20sp"
+    <RadioGroup
+        android:layout_width="351dp"
+        android:layout_height="88dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintVertical_bias="0.222">
 
-    <RadioButton
-        android:id="@+id/radOnlinePayment"
-        android:layout_width="395dp"
-        android:layout_height="32dp"
-        android:background="@color/Peach"
-        android:text="Online Payment"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.283"
-        tools:layout_editor_absoluteX="8dp" />
+        <RadioButton
+            android:id="@+id/radCounter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Peach"
+            android:text="Pay at Counter"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radOnlinePayment"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@color/Peach"
+            android:text="Online Payment"
+            android:textSize="20sp" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

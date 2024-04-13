@@ -9,20 +9,20 @@
 
     <EditText
         android:id="@+id/editTextFeedback"
-        android:layout_width="332dp"
-        android:layout_height="169dp"
+        android:layout_width="328dp"
+        android:layout_height="121dp"
         android:gravity="top"
-        android:hint="Enter your feedback"
+        android:hint="Tell us how was your order!"
         android:inputType="textMultiLine"
         android:maxLines="10"
         android:minLines="5"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <RatingBar
         android:id="@+id/ratingBarFeedback"
@@ -34,10 +34,10 @@
         android:stepSize="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.448" />
 
     <Button
         android:id="@+id/buttonSubmitFeedback"
@@ -54,13 +54,14 @@
 
     <ImageView
         android:id="@+id/imageView16"
-        android:layout_width="299dp"
-        android:layout_height="73dp"
+        android:layout_width="222dp"
+        android:layout_height="63dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117"
+        app:layout_constraintVertical_bias="0.344"
         app:srcCompat="@drawable/leaveareview" />
 
     <ImageButton
@@ -76,5 +77,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.02"
         app:srcCompat="@drawable/x" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="311dp"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.176"
+        app:srcCompat="@drawable/orderconfirmed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
