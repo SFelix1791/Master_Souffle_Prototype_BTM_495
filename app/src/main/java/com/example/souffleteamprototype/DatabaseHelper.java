@@ -1,3 +1,4 @@
+// DatabaseHelper.java
 package com.example.souffleteamprototype;
 
 import android.content.ContentValues;
@@ -11,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Name and Version
     public static final String DATABASE_NAME = "UserDatabase";
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 11;
 
     // Table & Column Names
     public static final String TABLE_USERS = "users";
@@ -96,6 +97,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_ORDER_FEEDBACK, null, values);
         db.close();
         return result != -1;
+    }
+
+    public Cursor getFeedbackByUserId(long userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_ORDER_FEEDBACK, new String[]{COLUMN_FEEDBACK_TEXT, COLUMN_FEEDBACK_RATING}, COLUMN_FEEDBACK_USER_ID + "=?", new String[]{String.valueOf(userId)}, null, null, null);
     }
 
     public Cursor getAllOrderFeedback() {

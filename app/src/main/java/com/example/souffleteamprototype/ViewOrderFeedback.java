@@ -1,6 +1,8 @@
+// ViewOrderFeedback.java
 package com.example.souffleteamprototype;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.database.Cursor;
 import android.view.View;
@@ -39,11 +41,11 @@ public class ViewOrderFeedback extends AppCompatActivity {
                 finish();  // Close the current activity
             }
         });
-
     }
 
     private void loadFeedback() {
-        Cursor cursor = dbHelper.getAllOrderFeedback(); // Retrieve order feedback from database
+        long userId = getCurrentUserId(); // Fetch the current user's ID
+        Cursor cursor = dbHelper.getFeedbackByUserId(userId); // Retrieve order feedback from database for the specific user
         List<String> feedbackList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -61,4 +63,10 @@ public class ViewOrderFeedback extends AppCompatActivity {
             listViewFeedback.setAdapter(adapter);
         }
     }
+
+    private long getCurrentUserId() {
+        SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        return prefs.getLong("userId", -1); // Default to -1 if no user ID is found
+    }
+
 }
