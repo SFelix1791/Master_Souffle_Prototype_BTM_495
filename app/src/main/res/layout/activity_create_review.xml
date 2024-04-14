@@ -57,12 +57,15 @@
         app:layout_constraintVertical_bias="0.837" />
 
     <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="198dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="88dp"
+        android:id="@+id/imageView23"
+        android:layout_width="312dp"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/feedback"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        app:srcCompat="@drawable/leave_a_comment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

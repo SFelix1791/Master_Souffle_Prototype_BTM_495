@@ -70,6 +70,8 @@ public class CheeseCakeItem extends AppCompatActivity {
                     .apply();
 
             Toast.makeText(CheeseCakeItem.this, "Item added to cart", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(CheeseCakeItem.this, Menu.class));
         });
 
         btnViewCart.setOnClickListener(v -> {

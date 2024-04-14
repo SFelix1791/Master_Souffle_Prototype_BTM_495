@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -34,6 +34,9 @@ public class ProceedPayment extends AppCompatActivity {
                 // Brings user to OrderStatus activity
                 Intent intent = new Intent(ProceedPayment.this, OrderStatus.class);
                 startActivity(intent);
+
+                // Display a toast message
+                Toast.makeText(ProceedPayment.this, "Payment Approved", Toast.LENGTH_SHORT).show();
             }
         });
     }

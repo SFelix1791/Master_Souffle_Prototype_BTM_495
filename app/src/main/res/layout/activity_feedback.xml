@@ -74,12 +74,14 @@
 
     <ImageView
         android:id="@+id/imageView19"
-        android:layout_width="305dp"
-        android:layout_height="61dp"
+        android:layout_width="278dp"
+        android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.641"
-        app:srcCompat="@drawable/previousfeedback" />
+        app:layout_constraintVertical_bias="0.662"
+        app:srcCompat="@drawable/previousreviews" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

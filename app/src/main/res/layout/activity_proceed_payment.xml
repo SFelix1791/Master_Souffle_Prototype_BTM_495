@@ -65,7 +65,7 @@
         android:layout_width="144dp"
         android:layout_height="79dp"
         android:fontFamily="@font/inter_bold"
-        android:text="Proceed"
+        android:text="Proceed Payment"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
