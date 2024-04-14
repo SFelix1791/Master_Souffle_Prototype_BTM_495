@@ -64,18 +64,18 @@ public class OrderFeedback extends AppCompatActivity {
         String feedbackText = editTextFeedback.getText().toString().trim();
         float rating = ratingBarFeedback.getRating();
 
-        // Check if the feedback is not empty
+        // Checks if the feedback is not empty
         if (!feedbackText.isEmpty()) {
-            long userId = getCurrentUserId();  // Fetch the current user's ID dynamically
+            long userId = getCurrentUserId();  // Fetch the current user's ID
 
             DatabaseHelper dbHelper = new DatabaseHelper(OrderFeedback.this);
             boolean success = dbHelper.addOrderFeedback(userId, feedbackText, (int) rating);
             if (success) {
                 Toast.makeText(OrderFeedback.this, "Feedback submitted successfully!", Toast.LENGTH_SHORT).show();
-                // Start the Menu activity
+                // Brings User to the Home / Menu page
                 Intent intent = new Intent(OrderFeedback.this, Menu.class);
                 startActivity(intent);
-                finish();  // Close the current activity
+                finish();  // Closes the current activity
             } else {
                 Toast.makeText(OrderFeedback.this, "Failed to submit feedback.", Toast.LENGTH_LONG).show();
             }

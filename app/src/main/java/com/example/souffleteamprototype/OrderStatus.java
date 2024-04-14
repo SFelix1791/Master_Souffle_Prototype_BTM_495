@@ -29,10 +29,11 @@ public class OrderStatus extends AppCompatActivity {
         Button btnConfirmOrder = findViewById(R.id.btnConfirmOrder);
 
         // Set an OnClickListener for the btnModifyOrder button
+        // Since there is no staff interface within the prototype, we opted to mimic this method through an onClickListener that would simulate a Approved Order Modification Request from staff
         btnModifyOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the ShopCart.java activity
+                // Starts the ShopCart.java activity
                 Intent intent = new Intent(OrderStatus.this, ShopCart.class);
                 startActivity(intent);
 

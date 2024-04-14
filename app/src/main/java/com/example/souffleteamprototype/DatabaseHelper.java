@@ -104,10 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.query(TABLE_ORDER_FEEDBACK, new String[]{COLUMN_FEEDBACK_TEXT, COLUMN_FEEDBACK_RATING}, COLUMN_FEEDBACK_USER_ID + "=?", new String[]{String.valueOf(userId)}, null, null, null);
     }
 
-    public Cursor getAllOrderFeedback() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.query(TABLE_ORDER_FEEDBACK, new String[]{COLUMN_FEEDBACK_TEXT, COLUMN_FEEDBACK_RATING}, null, null, null, null, null);
-    }
+
 
     // Retrieves user info using Email
     public Cursor getUserByEmail(String email) {
