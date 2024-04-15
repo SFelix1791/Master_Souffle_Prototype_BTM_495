@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CustomerInfo extends AppCompatActivity {
 
     private TextView txtViewFirstName, txtViewLastName, txtViewEmail, txtViewCustomerId, txtViewPhone, txtViewPoints;
-    private Button btnShowQR, btnMoveEditProfile, btnMoveToReview; // Added btnMoveToReview
+    private Button btnShowQR, btnMoveEditProfile, btnMoveToReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
