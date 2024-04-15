@@ -14,19 +14,23 @@ import java.util.ArrayList;
 
 public class Review extends AppCompatActivity {
 
+    // Declare UI elements
     private ListView listViewReviews;
     private Button btnMoveToCreateReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_review); // Make sure you have a ListView in this layout with the id 'listViewReviews'
+        setContentView(R.layout.activity_review);
 
+        // Initialize UI elements
         listViewReviews = findViewById(R.id.listViewReviews);
         btnMoveToCreateReview = findViewById(R.id.btnMoveToCreateReview);
 
+        // Loads the previous user comment reviews/feedback
         loadUserReviews();
 
+        // Set onClickListener to bring user to CreateReview.java where they can submit a new comment review
         btnMoveToCreateReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +41,7 @@ public class Review extends AppCompatActivity {
         });
     }
 
+    // Method loads previous user comment reviews from Database
     private void loadUserReviews() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         long userId = getCurrentUserId();
@@ -61,7 +66,7 @@ public class Review extends AppCompatActivity {
         listViewReviews.setAdapter(adapter);
     }
 
-    // Placeholder method to get the current user's ID
+    // Retrieves User ID
     private long getCurrentUserId() {
         SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
         return prefs.getLong("userId", -1); // Default to -1 if no user ID is found

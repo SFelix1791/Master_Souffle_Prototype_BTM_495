@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ProceedPayment extends AppCompatActivity {
 
+    // Declare UI elements
     private Button btnProceedPayment;
 
     @Override
@@ -26,8 +27,10 @@ public class ProceedPayment extends AppCompatActivity {
             return insets;
         });
 
+        // Initialize UI elements
         btnProceedPayment = findViewById(R.id.btnProceedPayment);
-        // Since prototype is not connected to Clover payment system, it automatically accepts any input to proceed
+
+        // Since prototype is not connected to Clover payment system, it automatically accepts any input to proceed and brings user to OrderStatus.java page
         btnProceedPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +38,7 @@ public class ProceedPayment extends AppCompatActivity {
                 Intent intent = new Intent(ProceedPayment.this, OrderStatus.class);
                 startActivity(intent);
 
-                // Display a toast message
+                // Notifies user of payment approval
                 Toast.makeText(ProceedPayment.this, "Payment Approved", Toast.LENGTH_SHORT).show();
             }
         });

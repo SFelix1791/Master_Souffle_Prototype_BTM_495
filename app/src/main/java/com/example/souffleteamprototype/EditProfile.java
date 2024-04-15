@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EditProfile extends AppCompatActivity {
 
+    // Declare UI elements and DatabaseHelper
     private EditText editEmail, editFirstName, editLastName;
     private DatabaseHelper dbHelper;
 
@@ -36,7 +37,7 @@ public class EditProfile extends AppCompatActivity {
         }
 
         // Set editEmail to be non-editable
-        // This is also invisible in the XML
+        // This is also invisible in the XML :)
         editEmail.setEnabled(false);
 
         Button btnSaveChanges = findViewById(R.id.btnSaveChanges);
@@ -66,17 +67,17 @@ public class EditProfile extends AppCompatActivity {
                 Log.d("EditProfile", "User info updated successfully.");
                 Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
 
-                // Redirects user to the Menu page
+                // Brings user to the Menu.java page
                 Intent intent = new Intent(EditProfile.this, Menu.class);
                 startActivity(intent);
                 finish(); // Close the current activity
             } else {
-                // Error message
+                // Error handling notification
                 Log.e("EditProfile", "Failed to update user info.");
                 Toast.makeText(this, "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
             }
         } else {
-            // Error messages
+            // Error handling notification
             Toast.makeText(this, "User with provided email not found", Toast.LENGTH_SHORT).show();
         }
     }

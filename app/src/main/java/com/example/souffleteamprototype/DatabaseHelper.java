@@ -73,12 +73,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_USERS);
-        db.execSQL(CREATE_TABLE_REVIEWS);
-        db.execSQL(CREATE_TABLE_ORDER_FEEDBACK);  // Create the order feedback table
+        db.execSQL(CREATE_TABLE_USERS);            // Creates the user table
+        db.execSQL(CREATE_TABLE_REVIEWS);         // Creates the comment feedback table
+        db.execSQL(CREATE_TABLE_ORDER_FEEDBACK);  // Creates the order feedback table
         Log.d("DatabaseHelper", "Database and tables created with new schema.");
     }
 
+    // Method to upgrade the database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
@@ -87,6 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Method to add order review/feedback
     public boolean addOrderFeedback(long userId, String feedbackText, int rating) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -99,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    // Method retrieves user's previous order review/feedback using their User ID
     public Cursor getFeedbackByUserId(long userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(TABLE_ORDER_FEEDBACK, new String[]{COLUMN_FEEDBACK_TEXT, COLUMN_FEEDBACK_RATING}, COLUMN_FEEDBACK_USER_ID + "=?", new String[]{String.valueOf(userId)}, null, null, null);
@@ -106,13 +109,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    // Retrieves user info using Email
+    // Method Retrieves user info using Email
     public Cursor getUserByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(TABLE_USERS, null, COLUMN_EMAIL + "=?", new String[]{email}, null, null, null);
     }
 
-    // Updates user info
+    // Method Updates user info
     public int updateUserInfo(String email, String firstName, String lastName) {
         Log.d("DatabaseHelper", "Updating user info for email: " + email);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -144,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1; // Return true if insertion is successful
     }
 
-    // Method to retrieve reviews for a specific user
+    // Method to retrieve comment feedback/reviews for a specific user
     public Cursor getReviewsByUserId(long userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(TABLE_REVIEWS, new String[] {COLUMN_REVIEW_TEXT, COLUMN_RATING}, COLUMN_USER_ID + "=?", new String[] {String.valueOf(userId)}, null, null, null);

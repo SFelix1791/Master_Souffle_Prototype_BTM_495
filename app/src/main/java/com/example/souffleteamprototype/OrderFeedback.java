@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class OrderFeedback extends AppCompatActivity {
 
+    // Declare UI elements
     private EditText editTextFeedback;
     private RatingBar ratingBarFeedback;
 
@@ -27,19 +28,19 @@ public class OrderFeedback extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_feedback);
 
-        // Setting up Window Insets
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize the EditText and RatingBar by their IDs
+        // Initialize UI elements
         editTextFeedback = findViewById(R.id.editTextFeedback);
         ratingBarFeedback = findViewById(R.id.ratingBarFeedback);
-
-        // Initialize the button and set its onClickListener
         Button buttonSubmitFeedback = findViewById(R.id.buttonSubmitFeedback);
+
+        // Set onClickListener to submit Feedback
         buttonSubmitFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +48,8 @@ public class OrderFeedback extends AppCompatActivity {
             }
         });
 
-        // Initialize the Image button to return to the Menu and set its onClickListener
+        // Initialize the Image button and sets OnClickListener to bring user to Menu.java page
+        // This is done seperately from the others to easily distinguish between Buttons and Image Buttons
         ImageButton btnX = findViewById(R.id.btnX);
         btnX.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,13 +62,14 @@ public class OrderFeedback extends AppCompatActivity {
         });
     }
 
+    // Method submits feedback
     private void submitFeedback() {
         String feedbackText = editTextFeedback.getText().toString().trim();
         float rating = ratingBarFeedback.getRating();
 
         // Checks if the feedback is not empty
         if (!feedbackText.isEmpty()) {
-            long userId = getCurrentUserId();  // Fetch the current user's ID
+            long userId = getCurrentUserId();  // This fetches the current user's user ID
 
             DatabaseHelper dbHelper = new DatabaseHelper(OrderFeedback.this);
             boolean success = dbHelper.addOrderFeedback(userId, feedbackText, (int) rating);
@@ -75,7 +78,7 @@ public class OrderFeedback extends AppCompatActivity {
                 // Brings User to the Home / Menu page
                 Intent intent = new Intent(OrderFeedback.this, Menu.class);
                 startActivity(intent);
-                finish();  // Closes the current activity
+                finish();
             } else {
                 Toast.makeText(OrderFeedback.this, "Failed to submit feedback.", Toast.LENGTH_LONG).show();
             }
@@ -84,6 +87,7 @@ public class OrderFeedback extends AppCompatActivity {
         }
     }
 
+    // Method to retrieve current user ID from SharedPreferences
     private long getCurrentUserId() {
         SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
         return prefs.getLong("userId", -1); // Default to -1 if no user ID is found

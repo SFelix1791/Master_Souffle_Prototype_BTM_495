@@ -15,9 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUp extends AppCompatActivity {
 
-    private EditText etFirstName, etLastName, etEmail, etPassword, etPhone; // Added etPhone for phone number input
-    private TextView etCustomerId, etPoints; // etPoints to display initial points
-    private Button btnSignUp, btnMoveToLogin; // Added btnMoveToLogin
+    // Declare UI elements
+    private EditText etFirstName, etLastName, etEmail, etPassword, etPhone;
+    private TextView etCustomerId, etPoints;
+    private Button btnSignUp, btnMoveToLogin;
     private DatabaseHelper dbHelper;
 
     @Override
@@ -33,18 +34,19 @@ public class SignUp extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etCustomerId = findViewById(R.id.etCustomerId);
-        etPhone = findViewById(R.id.etPhone); // Initialize the EditText for phone number
-        etPoints = findViewById(R.id.etPoints); // Initialize the TextView for points display
+        etPhone = findViewById(R.id.etPhone);
+        etPoints = findViewById(R.id.etPoints);
         btnSignUp = findViewById(R.id.btnSignUp);
-        btnMoveToLogin = findViewById(R.id.btnMoveToLogin); // Initialize btnMoveToLogin
+        btnMoveToLogin = findViewById(R.id.btnMoveToLogin);
 
-        // Display a unique CustomerID and initial points
+        // Displays a unique CustomerID and initial points
+        // These are invisible
         etCustomerId.setText(generateCustomerId());
         etPoints.setText("0"); // Display initial points as "0"
 
         btnSignUp.setOnClickListener(v -> signUp());
 
-        // Add OnClickListener for btnMoveToLogin
+        // Add OnClickListener to bring user to Login page
         btnMoveToLogin.setOnClickListener(v -> {
             // Create an Intent to start LoginActivity
             Intent intent = new Intent(SignUp.this, LoginActivity.class);
@@ -52,13 +54,14 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+    // Method retrieves user input
     private void signUp() {
         String firstName = etFirstName.getText().toString();
         String lastName = etLastName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-        String phone = etPhone.getText().toString(); // Get the phone number from the EditText
-        String customerId = etCustomerId.getText().toString(); // Retrieve the displayed CustomerID
+        String phone = etPhone.getText().toString();
+        String customerId = etCustomerId.getText().toString();
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
@@ -92,11 +95,12 @@ public class SignUp extends AppCompatActivity {
             editor.putInt("points", 0); // Storing initial points
             editor.apply();
 
+            // Notifies user of Successful sign up / account creation
             Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
             // Log for debugging
             Log.d("SignUp", "User signed up with CustomerID: " + customerId + " and phone: " + phone);
 
-            // Redirect to LoginActivity
+            // Brings user to Login page
             Intent intent = new Intent(SignUp.this, LoginActivity.class);
             startActivity(intent);
             finish(); // Close the SignUp activity
@@ -105,6 +109,7 @@ public class SignUp extends AppCompatActivity {
         db.close();
     }
 
+    // Method generates a unique user ID
     private String generateCustomerId() {
         // Initialize the customer ID and the database cursor
         String customerId = null;

@@ -24,7 +24,7 @@ public class OrderStatus extends AppCompatActivity {
             return insets;
         });
 
-        // Find the btnModifyOrder button by its ID
+        // Initialize Buttons
         Button btnModifyOrder = findViewById(R.id.btnModifyOrder);
         Button btnConfirmOrder = findViewById(R.id.btnConfirmOrder);
         Button btnCancelOrder = findViewById(R.id.btnCancelOrder);
@@ -34,7 +34,7 @@ public class OrderStatus extends AppCompatActivity {
         btnModifyOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Starts the ShopCart.java activity
+                // brings user to ShopCart.java page
                 Intent intent = new Intent(OrderStatus.this, ShopCart.class);
                 startActivity(intent);
 
@@ -46,7 +46,7 @@ public class OrderStatus extends AppCompatActivity {
         btnConfirmOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the OrderFeedback.java activity
+                // Brings user to OrderFeedback.java page
                 Intent intent = new Intent(OrderStatus.this, OrderFeedback.class);
                 startActivity(intent);
             }
@@ -55,7 +55,7 @@ public class OrderStatus extends AppCompatActivity {
         btnCancelOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the OrderFeedback.java activity
+                // Brings user to Menu.java page
                 Intent intent = new Intent(OrderStatus.this, Menu.class);
                 startActivity(intent);
 

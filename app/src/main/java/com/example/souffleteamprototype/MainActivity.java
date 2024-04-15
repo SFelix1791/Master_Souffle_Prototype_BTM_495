@@ -1,3 +1,6 @@
+// Please disregard this page, the prototype should not have a log-in page
+// This was purely for ease of testing and debugging things! :)
+
 package com.example.souffleteamprototype;
 
 import android.content.Intent;

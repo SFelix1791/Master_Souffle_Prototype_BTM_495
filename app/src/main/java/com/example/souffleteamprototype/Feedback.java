@@ -24,9 +24,11 @@ public class Feedback extends AppCompatActivity {
             return insets;
         });
 
+        // Initialize UI elements
         Button btnViewComments = findViewById(R.id.btnViewComments);
         Button btnViewOrderFeedback = findViewById(R.id.btnViewOrderFeedback);
 
+        // Sets onClickListener to bring user to Review.java page
         btnViewComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +37,7 @@ public class Feedback extends AppCompatActivity {
             }
         });
 
+        // Sets onClickListener to bring user to ViewOrderFeedback.java page
         btnViewOrderFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

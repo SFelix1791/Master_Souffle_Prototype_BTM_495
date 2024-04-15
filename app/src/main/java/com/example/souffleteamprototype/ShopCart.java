@@ -17,6 +17,7 @@ import java.util.Map;
 
 public class ShopCart extends AppCompatActivity {
 
+    //Declare UI elements and constants/variables relevant to the cart state
     private TextView tvItemList, tvSubtotal, tvTax, tvTotal, tvDiscount;
     private EditText etPromoCode;
     private Button btnApplyPromo, btnCheckout, btnClearCart;
@@ -43,6 +44,7 @@ public class ShopCart extends AppCompatActivity {
         setupListeners();
     }
 
+    // Initialize the elements in the layout
     private void initViews() {
         tvItemList = findViewById(R.id.tvItemList);
         tvSubtotal = findViewById(R.id.tvSubtotal);
@@ -56,16 +58,22 @@ public class ShopCart extends AppCompatActivity {
         btnBackMenu = findViewById(R.id.btnBackMenu);
     }
 
+    // Set onClick Listener for the following buttons
+    // Displayed this way for visual clarity
     private void setupListeners() {
         btnApplyPromo.setOnClickListener(v -> applyPromoCode());
         btnCheckout.setOnClickListener(v -> checkout());
         btnClearCart.setOnClickListener(v -> clearCart());
         btnBackMenu.setOnClickListener(v -> backToMenu());
     }
+
+    // Method brings user back to Menu.java page
     private void backToMenu() {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
     }
+
+    // Method applies Promotion Code
     private void applyPromoCode() {
         String promoCode = etPromoCode.getText().toString();
         if ("CAKE20".equalsIgnoreCase(promoCode) && !isDiscountApplied) {
@@ -77,11 +85,13 @@ public class ShopCart extends AppCompatActivity {
         }
     }
 
+    // Method brings user to Checkout page which is the ProceedPayment.java page
     private void checkout() {
         Intent intent = new Intent(this, ProceedPayment.class);
         startActivity(intent);
     }
 
+    // Method clears the cart and resets the price variables
     private void clearCart() {
         SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -99,6 +109,7 @@ public class ShopCart extends AppCompatActivity {
         Toast.makeText(this, "Cart cleared.", Toast.LENGTH_SHORT).show();
     }
 
+    // Method calculates items in the shopping cart
     private void calculateItems() {
         SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
         cartItems.clear();
@@ -124,6 +135,7 @@ public class ShopCart extends AppCompatActivity {
         displayCartItems();
     }
 
+    // Method displays items in the cart and it's details
     private void displayCartItems() {
         StringBuilder itemListText = new StringBuilder();
         for (CheesecakeItemWithQuantity item : cartItems.values()) {
@@ -134,12 +146,14 @@ public class ShopCart extends AppCompatActivity {
         tvItemList.setText(itemListText.toString());
     }
 
+    // Method applies the discount rate
     private void applyDiscount() {
         isDiscountApplied = true;
         discountAmount = subtotal * DISCOUNT_RATE;
         tvDiscount.setText(String.format(Locale.getDefault(), "-$%.2f", discountAmount));
     }
 
+    // Method updates total, tax, and subtotal
     private void updateTotals() {
         double tax = subtotal * TAX_RATE;
         double total = subtotal - discountAmount + tax;
@@ -148,6 +162,7 @@ public class ShopCart extends AppCompatActivity {
         tvTotal.setText(String.format(Locale.getDefault(), "$%.2f", total));
     }
 
+    // This represents cheesecake item
     private static class CheesecakeItemWithQuantity {
         double price;
         String topping;

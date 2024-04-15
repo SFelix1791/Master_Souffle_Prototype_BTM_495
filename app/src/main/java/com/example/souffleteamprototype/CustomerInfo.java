@@ -32,6 +32,7 @@ public class CustomerInfo extends AppCompatActivity {
         // Loads user info from SharedPreferences
         loadUserInfoFromSharedPreferences();
 
+        // Sets onClickListener to bring user to QR page and passes customerID/userID to be represented as a QR in next page
         btnShowQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +43,7 @@ public class CustomerInfo extends AppCompatActivity {
             }
         });
 
+        // Sets OnClickListener to bring user to Edit profile information page and passes user email
         btnMoveEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,10 +54,10 @@ public class CustomerInfo extends AppCompatActivity {
             }
         });
 
+        // Sets onClickListener to bring user to Feedback.java page
         btnMoveToReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Review activity
                 Intent intent = new Intent(CustomerInfo.this, Feedback.class);
                 startActivity(intent);
             }

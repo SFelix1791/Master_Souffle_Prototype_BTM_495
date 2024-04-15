@@ -17,6 +17,7 @@ import java.util.List;
 
 public class ViewOrderFeedback extends AppCompatActivity {
 
+    // Declare UI elements and DatabaseHelper
     private ListView listViewFeedback;
     private DatabaseHelper dbHelper;
 
@@ -25,13 +26,14 @@ public class ViewOrderFeedback extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_feedback);
 
+        // Initialize UI elements and DatabaseHelper
         listViewFeedback = findViewById(R.id.listViewFeedback);
         dbHelper = new DatabaseHelper(this);
 
         loadFeedback();
 
-        // Initialize the back to Feedback button and set its onClickListener
         Button btnBackToFeedback = findViewById(R.id.btnBackToFeedback);
+        // Set onClickListener to bring user to Feedback.java page
         btnBackToFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +45,7 @@ public class ViewOrderFeedback extends AppCompatActivity {
         });
     }
 
+    // Method loads the user's previous feedback
     private void loadFeedback() {
         long userId = getCurrentUserId(); // Fetch the current user's ID
         Cursor cursor = dbHelper.getFeedbackByUserId(userId); // Retrieve order feedback from database for the specific user
@@ -64,6 +67,7 @@ public class ViewOrderFeedback extends AppCompatActivity {
         }
     }
 
+    // Retrieves user's user ID
     private long getCurrentUserId() {
         SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
         return prefs.getLong("userId", -1); // Default to -1 if no user ID is found

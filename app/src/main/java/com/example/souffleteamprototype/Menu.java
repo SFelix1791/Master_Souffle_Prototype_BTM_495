@@ -12,7 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Menu extends AppCompatActivity {
 
-    private Button btnMoveToCart; // Add btnMoveToCart declaration here
+    // Declares UI elements
+    private Button btnMoveToCart;
     private ImageButton btnMoveToItem, btnCustomerAccount;
 
     @Override
@@ -27,27 +28,22 @@ public class Menu extends AppCompatActivity {
 
         // Initialize UI elements
         btnCustomerAccount = findViewById(R.id.btnCustomerAccount);
-        btnMoveToItem = findViewById(R.id.btnMoveToItem); // Initialize ImageButton
-        btnMoveToCart = findViewById(R.id.btnMoveToCart); // Initialize your Button for moving to the cart
+        btnMoveToItem = findViewById(R.id.btnMoveToItem);
+        btnMoveToCart = findViewById(R.id.btnMoveToCart);
 
-        // Sets onclick for btnCustomerAccount
-        // Brings user to Customer Account page
+        // Set onClickListener to bring user to CustomerInfo.java page
         btnCustomerAccount.setOnClickListener(v -> {
-            // Start the CustomerInfo activity
             Intent intent = new Intent(Menu.this, CustomerInfo.class);
             startActivity(intent);
         });
 
-        // Sets onclick for btnMoveToItem
-        // Brings user to CheeseCakeItem page
+        // Set onClickListener to bring user to CheeseCakeItem.java page
         btnMoveToItem.setOnClickListener(v -> {
-            // Start the CheeseCakeItem activity
             Intent intent = new Intent(Menu.this, CheeseCakeItem.class);
             startActivity(intent);
         });
 
-        // Sets onclick for btnMoveToCart
-        // Brings user to ShopCart page
+        // Set onClickListener to bring user to ShopCart.java page
         btnMoveToCart.setOnClickListener(v -> {
             // Start the ShopCart activity
             Intent intent = new Intent(Menu.this, ShopCart.class);
