@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Name and Version
     public static final String DATABASE_NAME = "UserDatabase";
-    public static final int DATABASE_VERSION = 11;
+    public static final int DATABASE_VERSION = 12;
 
     // Table & Column Names
     public static final String TABLE_USERS = "users";
